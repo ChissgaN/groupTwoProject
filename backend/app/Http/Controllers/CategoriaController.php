@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Producto;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,7 @@ class CategoriaController extends Controller
     public function show($id)
     {
         $categoria = Categoria::findOrFail($id);
-        return response()->json(['Trabajador:' => $categoria], 201);
+        return response()->json(['Categoria:' => $categoria], 201);
     }
 
     /**
@@ -66,16 +67,6 @@ class CategoriaController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    /* public function update(Request $request, Categoria $categoria)
-    {
-        $request->validate([
-            'nombre' => 'required|string',
-            'codigo' => 'required|string'. $categoria->id,
-        ]);
-
-        $categoria->update($request->all());
-        return response()->json($categoria, 200);
-    } */
 
     public function update(Request $request, $id)
     {
@@ -92,9 +83,14 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categoria $categoria)
-    {
-        $categoria->delete();
-        return response()->json(null, 204);
-    }
+
+    public function destroy($id)
+{
+    $categoria = Categoria::findOrFail($id);
+
+    $categoria->delete();
+
+    return response()->json(['message' => 'Categoría eliminada correctamente'], 200);
+}
+
 }

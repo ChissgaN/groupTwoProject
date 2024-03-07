@@ -43,7 +43,7 @@ const INITIAL_VISIBLE_COLUMNS = ["id", "nombre", "codigo", "actions"];
 export default function App() {
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
-    const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState(
@@ -60,6 +60,27 @@ export default function App() {
 
   // Estado para los datos obtenidos de la API
   const [productos, setProductos] = useState([]);
+  const handleDelete = (id) => {
+    if (window.confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+      fetch(`http://127.0.0.1:8000/api/categoria/${id}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (response.ok) {
+            // Eliminación exitosa
+            // Puedes actualizar la lista de productos después de la eliminación si lo necesitas
+            // Por ejemplo, puedes recargar la lista de productos después de eliminar uno
+            window.location.reload(); // Recarga la página
+          } else {
+            // Manejar errores en la eliminación
+            console.error("Error al eliminar el producto");
+          }
+        })
+        .catch((error) =>
+          console.error("Error en la solicitud DELETE:", error)
+        );
+    }
+  };
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/categoria")
@@ -180,10 +201,10 @@ export default function App() {
                   startContent={<EditIcon className={iconClasses} />}
                 >
                   <Link to={`/categorias/edit/${producto.id}`}>Edit</Link>
-
                 </DropdownItem>
                 <DropdownItem
                   startContent={<DeleteIcon className={iconClasses} />}
+                  onClick={() => handleDelete(producto.id)}
                 >
                   Delete
                 </DropdownItem>
@@ -359,9 +380,7 @@ export default function App() {
             </Button>
           </div>
         </div>
-        <div>
-          
-        </div>
+        <div></div>
       </div>
     );
   }, [

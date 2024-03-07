@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Add() {
@@ -10,6 +10,7 @@ function Add() {
   const [productQuantity, setProductQuantity] = useState("");
   const [productCosto, setProductCosto] = useState("");
   const [productPrice, setProductPrice] = useState("");
+  const [inventario, setInventario] = useState([]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -40,6 +41,13 @@ function Add() {
         break;
     }
   };
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/categoria")
+      .then((res) => res.json())
+      .then((dataCategorias) => setInventario(dataCategorias))
+      .catch((error) => console.error(error));
+  }, []);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,8 +63,6 @@ function Add() {
       cantidad: productQuantity,
     };
 
-    console.log("Product data submitted:", data);
-
     fetch("http://127.0.0.1:8000/api/producto", {
       method: "POST",
       headers: {
@@ -67,8 +73,6 @@ function Add() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        // Resetear los valores de los inputs después del envío exitoso
         setProductName("");
         setProductCode("");
         setProductBrand("");
@@ -84,10 +88,10 @@ function Add() {
     <>
       <div className="w-[100%] h-[60%] mx-auto p-6 bg-white rounded shadow">
         <div className="flex justify-between">
-        <h2 className="text-xl font-semibold mb-4">Añadir Producto</h2>
-        <Button color="primary" className="w-[80px]">
-          <Link to="/Inventario">Back</Link>
-        </Button>
+          <h2 className="text-xl font-semibold mb-4">Añadir Producto</h2>
+          <Button color="primary" className="w-[80px]">
+            <Link to="/Inventario">Back</Link>
+          </Button>
         </div>
 
         <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-12">
@@ -139,7 +143,7 @@ function Add() {
               onChange={handleInputChange}
             />
           </div>
-          <div>
+          {/* <div>
             <label
               htmlFor="category"
               className="block text-sm font-medium text-gray-700"
@@ -153,7 +157,30 @@ function Add() {
               value={categoryId}
               className="mt-1 p-2 border rounded w-full"
               onChange={handleInputChange}
-            />
+            /> */}
+          <div>
+            <label
+              htmlFor="category"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Categoria *
+            </label>
+            <select
+              id="id_categoria"
+              name="id_categoria"
+              value={categoryId}
+              className="mt-1 p-2 border rounded w-full"
+              onChange={handleInputChange}
+            >
+              <option value="" disabled>
+                Selecciona
+              </option>
+              {inventario.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.nombre}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <label

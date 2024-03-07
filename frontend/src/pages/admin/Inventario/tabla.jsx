@@ -35,7 +35,6 @@ import { Link } from "react-router-dom";
 const statusColorMap = {
   ordenado: "danger",
   recibido: "success",
-  
 };
 
 const INITIAL_VISIBLE_COLUMNS = [
@@ -70,7 +69,7 @@ export default function App() {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/producto") 
+    fetch("http://127.0.0.1:8000/api/producto")
       .then((res) => res.json())
       .then((data) => setProductos(data))
       .catch((error) => console.error(error));
@@ -93,13 +92,14 @@ export default function App() {
       );
     }
 
-    if (statusFilter !== "all" && statusFilter.length !== statusOptions.length) {
+    if (
+      statusFilter !== "all" &&
+      statusFilter.length !== statusOptions.length
+    ) {
       filteredProductos = filteredProductos.filter((producto) =>
         statusFilter.includes(producto.marca)
       );
     }
-
-    
 
     return filteredProductos;
   }, [productos, filterValue, statusFilter]);
@@ -190,16 +190,11 @@ export default function App() {
               </DropdownTrigger>
               <DropdownMenu>
                 <DropdownItem
-                  startContent={<EyeIcon className={iconClasses} />}
-                >
-                  View
-                </DropdownItem>
-                <DropdownItem
                   startContent={<EditIcon className={iconClasses} />}
                 >
                   <Link to={`/inventario/edit/${producto.id}`}>Edit</Link>
                 </DropdownItem>
-                
+
                 <DropdownItem
                   startContent={<DeleteIcon className={iconClasses} />}
                 >

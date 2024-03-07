@@ -22,7 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::put('producto/{id}', [ProductoController::class, 'update ']);
 Route::resource('producto', ProductoController::class);
 
 Route::resource('categoria', CategoriaController::class);

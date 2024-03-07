@@ -36,10 +36,7 @@ function App() {
           <Route path="compras/view/:id" element={<ShowFactura />} />
           
           <Route path="inventario/add" element={<Add />} />
-          {/* <Route path="inventario/add" element={<AddProduct />} /> */}
-          {/* <Route path="inventario/edit" element={<EditProduct />} /> */}
           <Route path="inventario/edit/:id" element={<EditProduct />} />
-          {/* <Route path="tickets" element={<Tickets />} /> */}
 
           <Route path="categorias" element={<Categorias />} />
           <Route path="categorias/add" element={<AddCategories />} />
@@ -48,7 +45,6 @@ function App() {
           
           <Route path="proveedores" element={<Proveedores />} />
           <Route path="proveedores/add" element={<AddProveedor />} />
-          <Route path="proveedores/view/:id" element={<View />} />
           <Route path="proveedores/EditProveedo/:id" element={<EditProveedo />} />
         </Route>
 

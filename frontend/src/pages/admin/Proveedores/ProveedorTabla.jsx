@@ -38,7 +38,13 @@ const statusColorMap = {
   vacation: "warning",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["id", "nombre", "email", "compañia", "actions"];
+const INITIAL_VISIBLE_COLUMNS = [
+  "id",
+  "nombre",
+  "email",
+  "compañia",
+  "actions",
+];
 
 export default function ProveedorTabla() {
   const iconClasses =
@@ -129,14 +135,11 @@ export default function ProveedorTabla() {
               </DropdownTrigger>
               <DropdownMenu>
                 <DropdownItem
-                  startContent={<EyeIcon className={iconClasses} />}
-                >
-                  <Link to={`/proveedores/view/${producto.id}`}>View</Link>
-                </DropdownItem>
-                <DropdownItem
                   startContent={<EditIcon className={iconClasses} />}
                 >
-                  <Link to={`/proveedores/EditProveedo/${producto.id}`}>Edit</Link>
+                  <Link to={`/proveedores/EditProveedo/${producto.id}`}>
+                    Edit
+                  </Link>
                 </DropdownItem>
                 <DropdownItem
                   startContent={<DeleteIcon className={iconClasses} />}

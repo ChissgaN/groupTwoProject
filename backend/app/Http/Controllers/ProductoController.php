@@ -67,7 +67,7 @@ class ProductoController extends Controller
         $request->validate([
             'nombre' => 'string',
             'cod' => 'string',
-            'precio' => 'numeric|min:0',
+            'precio' => 'numeric|regex:/^\d+(\.\d{1,2})?$/|min:0',
             'marca' => 'string',
             'id_categoria' => 'numeric',
             'costo' =>  'numeric|min:0',
@@ -85,9 +85,9 @@ class ProductoController extends Controller
 //      * @param  \App\Models\Producto  $producto
 //      * @return \Illuminate\Http\Response
 //      */
-//     public function destroy(Producto $producto)
-//     {
-//         $producto->delete();
-//         return response()->json(null, 204);
-//     }
+    public function destroy(Producto $producto)
+    {
+        $producto->delete();
+        return response()->json(null, 204);
+    }
 }

@@ -78,7 +78,10 @@ const EditarProducto = () => {
         </div>
         <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-12">
           <div className="">
-            <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="nombre"
+              className="block text-sm font-medium text-gray-700"
+            >
               Nombre
             </label>
             <input
@@ -89,7 +92,10 @@ const EditarProducto = () => {
               placeholder={formData.nombre}
               onChange={handleInputChange}
             />
-            <label htmlFor="cod" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="cod"
+              className="block text-sm font-medium text-gray-700"
+            >
               Código
             </label>
             <input
@@ -100,18 +106,32 @@ const EditarProducto = () => {
               placeholder={formData.cod}
               onChange={handleInputChange}
             />
-            <label htmlFor="precio" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="precio"
+              className="block text-sm font-medium text-gray-700"
+            >
               Precio
             </label>
+
             <input
-              type="number"
+              type="text"
               id="precio"
               name="precio"
               className="mt-1 p-2 border rounded w-full"
               placeholder={formData.precio}
-              onChange={handleInputChange}
+              value={formData.precio}
+              onChange={(e) => {
+                // Permite ingresar solo números y un máximo de dos decimales
+                const regex = /^[0-9]*(\.[0-9]{0,2})?$/;
+                if (regex.test(e.target.value) || e.target.value === "") {
+                  setFormData({ ...formData, precio: e.target.value });
+                }
+              }}
             />
-            <label htmlFor="marca" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="marca"
+              className="block text-sm font-medium text-gray-700"
+            >
               Marca
             </label>
             <input
@@ -122,7 +142,10 @@ const EditarProducto = () => {
               placeholder={formData.marca}
               onChange={handleInputChange}
             />
-            <label htmlFor="id_categoria" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="id_categoria"
+              className="block text-sm font-medium text-gray-700"
+            >
               Categoría
             </label>
             <input
@@ -133,7 +156,10 @@ const EditarProducto = () => {
               placeholder={formData.id_categoria}
               onChange={handleInputChange}
             />
-            <label htmlFor="cantidad" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="cantidad"
+              className="block text-sm font-medium text-gray-700"
+            >
               Cantidad
             </label>
             <input
