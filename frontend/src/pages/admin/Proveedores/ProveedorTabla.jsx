@@ -116,7 +116,7 @@ export default function ProveedorTabla() {
 
   const renderCell = React.useCallback((producto, columnKey) => {
     const cellValue = producto[columnKey];
-    console.log(producto);
+    /* console.log(producto); */
     switch (columnKey) {
       case "actions":
         return (
@@ -131,17 +131,17 @@ export default function ProveedorTabla() {
                 <DropdownItem
                   startContent={<EyeIcon className={iconClasses} />}
                 >
-                  View
+                  <Link to={`/proveedores/view/${producto.id}`}>View</Link>
                 </DropdownItem>
                 <DropdownItem
                   startContent={<EditIcon className={iconClasses} />}
                 >
-                  <Link to="/proveedores/edit">Editar</Link>
+                  <Link to={`/proveedores/EditProveedo/${producto.id}`}>Edit</Link>
                 </DropdownItem>
                 <DropdownItem
                   startContent={<DeleteIcon className={iconClasses} />}
                 >
-                  Eliminar
+                  Delete
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>

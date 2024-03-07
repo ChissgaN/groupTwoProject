@@ -33,9 +33,8 @@ import jsPDF from "jspdf";
 import { Link } from "react-router-dom";
 
 const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
+  recibido: "success",
+  ordenado: "warning",
 };
 
 const INITIAL_VISIBLE_COLUMNS = [
@@ -127,7 +126,7 @@ export default function App() {
   const renderCell = React.useCallback((producto, columnKey) => {
     const cellValue = columnKey;
 
-    console.log(producto);
+    console.log(cellValue.marca);
     // console.log(cellValue);
     switch (columnKey) {
       case "fecha":
@@ -152,7 +151,7 @@ export default function App() {
             </p>
           </div>
         );
-      case "estado de compra":
+      /* case "estado de compra":
         return (
           <Chip
             className="capitalize"
@@ -160,6 +159,13 @@ export default function App() {
             size="sm"
             variant="flat"
           ></Chip>
+        ); */
+
+        case "estado de compra":
+        return (
+          <Chip className="capitalize" color={statusColorMap["recibido"]} size="sm" variant="flat">
+            {"recibido"}
+          </Chip>
         );
       case "total":
         return (

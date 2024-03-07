@@ -19,6 +19,8 @@ import EditProveedor from "./pages/admin/Proveedores/EditProveedor";
 import AddProduct from "./pages/admin/Inventario/AddProduct";
 import ShowFactura from "./pages/admin/Compras/ShowFactura";
 import AddBill from "./pages/admin/Compras/AddBill";
+import View from "./pages/admin/Proveedores/EditProveedo";
+import EditProveedo from "./pages/admin/Proveedores/EditProveedo";
 
 function App() {
   return (
@@ -35,16 +37,19 @@ function App() {
           
           <Route path="inventario/add" element={<Add />} />
           {/* <Route path="inventario/add" element={<AddProduct />} /> */}
-          <Route path="inventario/edit" element={<EditProduct />} />
+          {/* <Route path="inventario/edit" element={<EditProduct />} /> */}
+          <Route path="inventario/edit/:id" element={<EditProduct />} />
           {/* <Route path="tickets" element={<Tickets />} /> */}
 
           <Route path="categorias" element={<Categorias />} />
           <Route path="categorias/add" element={<AddCategories />} />
-          <Route path="categorias/edit" element={<EditCategories />} />
+          
+          <Route path="categorias/edit/:id" element={<EditCategories />} />
           
           <Route path="proveedores" element={<Proveedores />} />
           <Route path="proveedores/add" element={<AddProveedor />} />
-          <Route path="proveedores/edit" element={<EditProveedor />} />
+          <Route path="proveedores/view/:id" element={<View />} />
+          <Route path="proveedores/EditProveedo/:id" element={<EditProveedo />} />
         </Route>
 
         <Route path="*" element={<Error404 />} />

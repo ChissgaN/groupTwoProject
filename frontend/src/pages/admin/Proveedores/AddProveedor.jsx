@@ -2,37 +2,38 @@ import { Button } from "@nextui-org/react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-
 function AddProveedor() {
-  const [categoryName, setCategoryName] = useState("");
-  const [codeCategoria, setCodeCategoria] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [compañia, setCompañia] = useState("");
 
-  const handleInputChange = (event) => {
-    setCategoryName(event.target.value);
-    
-  };
-  const inputChange = (event) => {
-    setCodeCategoria(event.target.value);
-    
+  const handleNombreChange = (event) => {
+    setNombre(event.target.value);
   };
 
-   
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleCompañiaChange = (event) => {
+    setCompañia(event.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
     const data = {
-      nombre: formData.get("nombre"),
-      codigo: formData.get("codigo")
+      nombre: nombre,
+      email: email,
+      compañia: compañia,
     };
 
-    console.log("Product data submitted:");
+    console.log("Proveedor data submitted:", data);
 
-    fetch("http://127.0.0.1:8000/api/categoria", {
+    fetch("http://127.0.0.1:8000/api/proveedore", {
       method: "POST",
-      headers:{
-        "Content-Type" : "application/json",
+      headers: {
+        "Content-Type": "application/json",
         Accept: "application/json",
       },
       body: JSON.stringify(data),
@@ -41,20 +42,21 @@ function AddProveedor() {
       .then((data) => {
         console.log(data);
         // Borrar los datos del input
-        setCategoryName("");
-        setCodeCategoria("");
+        setNombre("");
+        setEmail("");
+        setCompañia("");
       })
       .catch((error) => console.log(error));
   };
 
   return (
     <>
-      <div className="w-[100%] h-[60%] mx-auto p-6 bg-white rounded shadow ">
+      <div className="w-[100%] h-[60%] mx-auto p-6 bg-white rounded shadow">
         <div className="flex justify-between">
-        <h2 className="text-xl font-semibold mb-4">Añadir Proveedor</h2>
-        <Button color="primary" className="w-[80px]">
-          <Link to="/proveedores">Back</Link>
-        </Button>
+          <h2 className="text-xl font-semibold mb-4">Añadir Proveedor</h2>
+          <Button color="primary" className="w-[80px]">
+            <Link to="/proveedores">Back</Link>
+          </Button>
         </div>
         <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-12">
           <div className="">
@@ -62,43 +64,43 @@ function AddProveedor() {
               htmlFor="nombre"
               className="block text-sm font-medium text-gray-700"
             >
-              Nombre 
+              Nombre
             </label>
             <input
               type="text"
               id="nombre"
               name="nombre"
               className="mt-1 p-2 border rounded w-full"
-              value={categoryName}
-              onChange={handleInputChange}
+              value={nombre}
+              onChange={handleNombreChange}
             />
             <label
-              htmlFor="codigo"
+              htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
               Email
             </label>
             <input
               type="text"
-              id="codigo"
+              id="email"
               name="email"
               className="mt-1 p-2 border rounded w-full"
-              value={codeCategoria}
-              onChange={inputChange}
+              value={email}
+              onChange={handleEmailChange}
             />
             <label
-              htmlFor="codigo"
+              htmlFor="compañia"
               className="block text-sm font-medium text-gray-700"
             >
               Compañia
             </label>
             <input
               type="text"
-              id="codigo"
+              id="compañia"
               name="compañia"
               className="mt-1 p-2 border rounded w-full"
-              value={codeCategoria}
-              onChange={inputChange}
+              value={compañia}
+              onChange={handleCompañiaChange}
             />
           </div>
 

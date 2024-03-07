@@ -1,48 +1,3 @@
-// import React, { useState, useEffect } from "react";
-
-// export default function Categories() {
-//   const [categories, setCategories] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     fetch("http://127.0.0.1:8000/api/categoria")
-//       .then((response) => response.json())
-//       .then((data) => {
-//         setCategories(data);
-//         setLoading(false);
-//       })
-//       .catch((error) => console.error(error));
-//   }, []);
-
-//   return (
-//     <div className="overflow-x-auto">
-//       {loading ? (
-//         <p>Loading...</p>
-//       ) : (
-//         <table className="table-auto border-collapse w-full">
-//           <thead>
-//             <tr>
-//               <th className="border border-gray-500 px-4 py-2">Columna 1</th>
-//               <th className="border border-gray-500 px-4 py-2">Columna 2</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {categories.map((category) => (
-//               <tr key={category.id}>
-//                 <td className="border border-gray-500 px-4 py-2">
-//                   {category.id}
-//                 </td>
-//                 <td className="border border-gray-500 px-4 py-2">
-//                   {category.nombre}
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       )}
-//     </div>
-//   );
-// }
 import React, { useState, useEffect } from "react";
 import {
   Table,
@@ -88,6 +43,7 @@ const INITIAL_VISIBLE_COLUMNS = ["id", "nombre", "codigo", "actions"];
 export default function App() {
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
+    const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState(
@@ -223,12 +179,13 @@ export default function App() {
                 <DropdownItem
                   startContent={<EditIcon className={iconClasses} />}
                 >
-                  <Link to="/categorias/edit">Editar</Link>
+                  <Link to={`/categorias/edit/${producto.id}`}>Edit</Link>
+
                 </DropdownItem>
                 <DropdownItem
                   startContent={<DeleteIcon className={iconClasses} />}
                 >
-                  Eliminar
+                  Delete
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -403,11 +360,7 @@ export default function App() {
           </div>
         </div>
         <div>
-          {/* Botón para exportar a Excel */}
-          {/* <button onClick={handleExportExcel}>Export to Excel</button> */}
-          {/* Botón para exportar a PDF */}
-
-          {/* Resto del código... */}
+          
         </div>
       </div>
     );

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -26,6 +27,8 @@ class CategoriaController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -40,10 +43,13 @@ class CategoriaController extends Controller
 
     /**
      * Display the specified resource.
+     * @param  \App\Models\Producto  $producto
+     * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show($id)
     {
-        return response()->json($categoria, 200);
+        $categoria = Categoria::findOrFail($id);
+        return response()->json(['Trabajador:' => $categoria], 201);
     }
 
     /**
@@ -56,15 +62,31 @@ class CategoriaController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *  @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Producto  $producto
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    /* public function update(Request $request, Categoria $categoria)
     {
         $request->validate([
             'nombre' => 'required|string',
+            'codigo' => 'required|string'. $categoria->id,
         ]);
 
         $categoria->update($request->all());
         return response()->json($categoria, 200);
+    } */
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required|string',
+            'codigo' => 'required|string'
+        ]);
+
+        $categoria = Categoria::findOrFail($id);
+        $categoria->update($request->all());
+        return response()->json(['message' => 'Datos del Trabajador actualizado correctamente', 'Trabajador: ' => $categoria], 201);
     }
 
     /**

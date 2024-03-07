@@ -33,9 +33,9 @@ import jsPDF from "jspdf";
 import { Link } from "react-router-dom";
 
 const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
+  ordenado: "danger",
+  recibido: "success",
+  
 };
 
 const INITIAL_VISIBLE_COLUMNS = [
@@ -92,14 +92,14 @@ export default function App() {
         producto.nombre.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
-    if (
-      statusFilter !== "all" &&
-      statusFilter.length !== statusOptions.length
-    ) {
+
+    if (statusFilter !== "all" && statusFilter.length !== statusOptions.length) {
       filteredProductos = filteredProductos.filter((producto) =>
         statusFilter.includes(producto.marca)
       );
     }
+
+    
 
     return filteredProductos;
   }, [productos, filterValue, statusFilter]);
@@ -197,13 +197,13 @@ export default function App() {
                 <DropdownItem
                   startContent={<EditIcon className={iconClasses} />}
                 >
-                  <Link to="/inventario/edit">Editar</Link>
+                  <Link to={`/inventario/edit/${producto.id}`}>Edit</Link>
                 </DropdownItem>
                 
                 <DropdownItem
                   startContent={<DeleteIcon className={iconClasses} />}
                 >
-                  Eliminar
+                  Delete
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -290,7 +290,7 @@ export default function App() {
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
                 <Button
-                  className="bg-blue-500 text-white hidden"
+                  className="bg-blue-500 text-white hidden "
                   endContent={<ChevronDownIcon className="text-small" />}
                   variant="flat"
                 >
