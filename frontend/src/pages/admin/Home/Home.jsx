@@ -10,39 +10,44 @@ const Home = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-10">
-        <h1 className="text-4xl text-white">Good morning, jotredev!</h1>
+        <h1 className="text-4xl text-black">Bienvenido Administrador!</h1>
         <div className="flex items-center gap-2 text-3xl">
           <RiArrowLeftSLine className="transition-colors hover:cursor-pointer hover:text-white" />
           <RiArrowRightSLine className="transition-colors hover:cursor-pointer hover:text-white" />
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
         {/* Card */}
         <CardTicket
           ticket="total"
-          totalTickets="145,000"
-          text="Tickets totales"
+          totalTickets="Compras"
+          text=""
+          enlace="/compras/add"
+          
         />
         <CardTicket
           ticket="pending"
-          totalTickets="5,000"
-          text="Tickets pendientes"
+          totalTickets="Inventario"
+          text=""
+          enlace="/inventario/add"
         />
         <CardTicket
           ticket="inProcess"
-          totalTickets="130,000"
-          text="Tickets en proceso"
+          totalTickets="Categorias"
+          text=""
+          enlace="/categorias/add"
         />
         <CardTicket
           ticket="close"
-          totalTickets="10,000"
-          text="Tickets cerrados"
+          totalTickets="Proveedores"
+          text=""
+          enlace="/proveedores/add"
         />
       </div>
       <div>
-        <h1 className="my-10 text-2xl text-white">Tickets más recientes</h1>
+        <h1 className="my-10 text-2xl text-black">Información</h1>
       </div>
-      <div className="p-8 bg-secondary-100 rounded-xl">
+      <div className="p-8 bg-[#1E1F25] rounded-xl">
         <div className="hidden grid-cols-1 gap-4 p-4 mb-10 md:grid md:grid-cols-5">
           <h5>ID</h5>
           <h5>Descripción</h5>

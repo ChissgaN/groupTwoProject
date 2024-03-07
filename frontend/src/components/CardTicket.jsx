@@ -4,9 +4,10 @@ import { RiTicketLine, RiMore2Fill, RiAddLine } from "react-icons/ri";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
+import { Button } from "@nextui-org/react";
 
 const CardTicket = (props) => {
-  const { ticket, totalTickets, text } = props;
+  const { ticket, totalTickets, text, enlace } = props;
 
   let status = "";
   let textColor = "";
@@ -31,12 +32,12 @@ const CardTicket = (props) => {
   }
 
   return (
-    <div className="p-8 bg-secondary-100 rounded-xl">
+    <div className="p-8 bg-[#1E1F25] text-white rounded-xl">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <RiTicketLine
+          {/* <RiTicketLine
             className={`text-4xl ${status} p-2 box-content rounded-xl`}
-          />
+          /> */}
         </div>
         <div>
           <Menu
@@ -71,19 +72,16 @@ const CardTicket = (props) => {
         </div>
       </div>
       {/* Number of tickets */}
-      {/* <div>
+      <div>
         <h1 className="mb-4 text-4xl font-bold text-white">{totalTickets}</h1>
         <p className={textColor}>{text}</p>
-      </div> */}
-      {/* <hr className="my-4 border border-dashed border-gray-500/50" />
+      </div>
+      <hr className="my-4 border border-dashed border-gray-500/50" />
       <div>
-        <Link
-          to="/"
-          className="flex items-center gap-2 text-white hover:underline"
-        >
-           <RiAddLine /> Agregar nuevo ticket 
-        </Link>
-      </div> */}
+      <Button color="primary" className="w-[80px]">
+            <Link to={enlace}>Agregar</Link>
+          </Button>
+      </div>
     </div>
   );
 };
