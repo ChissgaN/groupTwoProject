@@ -229,15 +229,11 @@ export default function App() {
                   <Link to={`/compras/view/${producto.id}`}>View</Link>
                   
                 </DropdownItem>
-                <DropdownItem
-                  startContent={<EditIcon className={iconClasses} />}
-                >
-                  Editar
-                </DropdownItem>
+                
                 <DropdownItem
                   startContent={<DeleteIcon className={iconClasses} />}
                 >
-                  Eliminar
+                  Delete
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>

@@ -86,7 +86,7 @@ function Add() {
 
   return (
     <>
-      <div className="w-[100%] h-[60%] mx-auto p-6 bg-white rounded shadow">
+      <div className="w-[100%] h-[85%] mx-auto p-6 bg-white rounded shadow">
         <div className="flex justify-between">
           <h2 className="text-xl font-semibold mb-4">Añadir Producto</h2>
           <Button color="primary" className="w-[80px]">
@@ -143,21 +143,7 @@ function Add() {
               onChange={handleInputChange}
             />
           </div>
-          {/* <div>
-            <label
-              htmlFor="category"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Categoria *
-            </label>
-            <input
-              type="text"
-              id="id_categoria"
-              name="id_categoria"
-              value={categoryId}
-              className="mt-1 p-2 border rounded w-full"
-              onChange={handleInputChange}
-            /> */}
+          
           <div>
             <label
               htmlFor="category"

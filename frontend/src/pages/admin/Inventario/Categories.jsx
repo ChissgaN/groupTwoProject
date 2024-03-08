@@ -193,11 +193,6 @@ export default function App() {
               </DropdownTrigger>
               <DropdownMenu>
                 <DropdownItem
-                  startContent={<EyeIcon className={iconClasses} />}
-                >
-                  View
-                </DropdownItem>
-                <DropdownItem
                   startContent={<EditIcon className={iconClasses} />}
                 >
                   <Link to={`/categorias/edit/${producto.id}`}>Edit</Link>

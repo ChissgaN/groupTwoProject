@@ -1,3 +1,4 @@
+import { Button } from "@nextui-org/react";
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
@@ -60,21 +61,15 @@ const EditarProducto = () => {
 
   return (
     <div>
-      <div>
-        {formData ? (
-          <div>
-            <h1>Producto: {id}</h1>
-            <p>Nombre: {formData.nombre}</p>
-          </div>
-        ) : (
-          <p>Cargando detalles del producto...</p>
-        )}
-      </div>
 
       <div className="w-[100%] h-[60%] mx-auto p-6 bg-white rounded shadow">
         <div className="flex justify-between">
           <h2 className="text-xl font-semibold mb-4">Actualizar Producto</h2>
+
+          <Button color="primary" className="w-[80px]">
           <Link to="/inventario">Back</Link>
+          </Button>
+          
         </div>
         <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-12">
           <div className="">

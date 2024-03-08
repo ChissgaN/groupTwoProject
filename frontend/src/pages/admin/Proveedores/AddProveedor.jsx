@@ -51,7 +51,7 @@ function AddProveedor() {
 
   return (
     <>
-      <div className="w-[100%] h-[60%] mx-auto p-6 bg-white rounded shadow">
+      <div className="w-[100%] h-[70%] mx-auto p-6 bg-white rounded shadow">
         <div className="flex justify-between">
           <h2 className="text-xl font-semibold mb-4">Añadir Proveedor</h2>
           <Button color="primary" className="w-[80px]">

@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Button } from "@nextui-org/react";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 
 const EditProveedo = () => {
   const { id } = useParams();
-  const [proveedor, setProveedor] = useState({ nombre: "", email: "", compañia: "" });
-/* console.log(proveedor) */
+  const [proveedor, setProveedor] = useState({
+    nombre: "",
+    email: "",
+    compañia: "",
+  });
+  /* console.log(proveedor) */
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setProveedor({ ...proveedor, [name]: value });
@@ -15,20 +20,20 @@ const EditProveedo = () => {
 
     fetch(`http://127.0.0.1:8000/api/proveedore/${id}`, {
       method: "PUT",
-      headers:{
-        "Content-Type" : "application/json",
+      headers: {
+        "Content-Type": "application/json",
         Accept: "application/json",
       },
       body: JSON.stringify(proveedor),
     })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      // Limpiar los valores de los inputs
-      setProveedor({ nombre: "", email: "", compañia: "" });
-    })
-    .catch((error) => console.log(error));
-  }; 
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // Limpiar los valores de los inputs
+        setProveedor({ nombre: "", email: "", compañia: "" });
+      })
+      .catch((error) => console.log(error));
+  };
 
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/api/proveedore/${id}`)
@@ -39,25 +44,19 @@ const EditProveedo = () => {
 
   return (
     <div>
-      <div>
-        {proveedor ? (
-          <div>
-            <h1>Proveedor: {id}</h1>
-            <p>Empresa: {proveedor.nombre}</p>
-          </div>
-        ) : (
-          <p>Cargando detalles del proveedor...</p>
-        )}
-      </div>
-      
       <div className="w-[100%] h-[60%] mx-auto p-6 bg-white rounded shadow">
         <div className="flex justify-between">
           <h2 className="text-xl font-semibold mb-4">Actualizar Proveedor</h2>
-          <Link to="/proveedores">Back</Link>
+          <Button color="primary" className="w-[80px]">
+            <Link to="/proveedores">Back</Link>
+          </Button>
         </div>
         <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-12">
           <div className="">
-            <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="nombre"
+              className="block text-sm font-medium text-gray-700"
+            >
               Nombre
             </label>
             <input
@@ -68,7 +67,10 @@ const EditProveedo = () => {
               placeholder={proveedor.nombre}
               onChange={handleInputChange}
             />
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email
             </label>
             <input
@@ -79,7 +81,10 @@ const EditProveedo = () => {
               placeholder={proveedor.email}
               onChange={handleInputChange}
             />
-            <label htmlFor="compañia" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="compañia"
+              className="block text-sm font-medium text-gray-700"
+            >
               Compañia
             </label>
             <input
@@ -102,6 +107,6 @@ const EditProveedo = () => {
       </div>
     </div>
   );
-}
+};
 
 export default EditProveedo;
