@@ -35,9 +35,6 @@ useEffect(() => {
       })
       .catch((error) => console.error(error));
 }, []);
-
-console.log(proveedorxxx);
-
   
 
   const handleProductoChange = (event, index) => {
@@ -59,7 +56,6 @@ console.log(proveedorxxx);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Compra data submitted:", formData);
 
     fetch("http://127.0.0.1:8000/api/compra", {
       method: "POST",

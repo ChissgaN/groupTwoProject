@@ -126,8 +126,6 @@ export default function App() {
   const renderCell = React.useCallback((producto, columnKey) => {
     const cellValue = columnKey;
 
-    console.log(cellValue.marca);
-    // console.log(cellValue);
     switch (columnKey) {
       case "fecha":
         return (
